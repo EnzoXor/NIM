@@ -1,14 +1,17 @@
 
 def usuario_escolhe_jogada(n,m):
-    a = int(input('quantas pessas deseja retirar?'))
-   
-    if a > m or a <0:
-        print('não é permitido esse número')
+    jogado = 0
+    while jogado!=1:
         a = int(input('quantas pessas deseja retirar?'))
-    
-    else:
+        if a <= 0 or a>m or a>n:
+            print('Oops! Jogada inválida! Tente de novo.')
+        else:
+            jogado=1
+       
+    if jogado ==1:
         print('voce tirou',a,'peças')
-    return a
+        return a
+    
 
 
 def computador_escolhe_jogada(n,m):
@@ -38,7 +41,7 @@ def partida():
         
         while n >=0:
             if k == 0 and n>0:
-                a =  usuario_escolhe_jogada(n,m)
+                a = usuario_escolhe_jogada(n,m)
                 n = n - a
                 print('sobrou',n,'pessas no tabuleiro') 
                 if n>0:
@@ -53,7 +56,7 @@ def partida():
                 if n>0:
                     k =0
                 else:
-                    print('O pc venceu')
+                    print('O computador venceu')
                     return
     
         if n==0:
@@ -61,7 +64,7 @@ def partida():
     inicio = False
     if inicio == False:
         n = int(input('Quantas peças? '))
-        m = int(input('Limite de pessas por Jogada? '))
+        m = int(input('Limite de peças por jogada? '))
         inicio = True
     
     if (n%(m+1)) == 0 and inicio == True:
@@ -74,10 +77,14 @@ def partida():
     return
 
 def start():
-    a = input('Escolha o Modo que você quer Partida(P) Campeonato(C): ')
-    if a == "P":
+    print('Bem-vindo ao jogo do NIM! Escolha:')
+    print('1 - para jogar uma partida isolada')
+    a = input('2 - para jogar um campeonato ')
+    if a == "1":
+        print('Voce escolheu uma partida única!')
         partida()
-    if a == "C":
+    if a == "2":
+        print('Voce escolheu um campeonato!')
         partida()
         partida()
         partida()
